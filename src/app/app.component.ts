@@ -13,21 +13,34 @@ export class AppComponent implements OnInit{
   dataservice = inject(CountryService)
   countries: any[] = []
   country: any
-  id = "French Southern and Antarctic Lands"
+  id = "TWN"
+  region = "americas"
+  capital = "Paris"
   
   ngOnInit(): void {
       this.dataservice.getCountries().subscribe(
-        data => {console.log(data)
+        data => {
+          console.log(data)
           this.countries = data
         }
       )
       
       this.dataservice.getOneCountry(this.id).subscribe(
         data => {
-          console.log(data)
           this.country = data
         }
       )
       
+      this.dataservice.getCountriesByRegions(this.region).subscribe(
+        data => {
+          console.log(data)
+        }
+      )
+
+      this.dataservice.getCountryByCapital(this.capital).subscribe(
+        data => {
+          console.log(data[0])
+        }
+      )
   }
 }
