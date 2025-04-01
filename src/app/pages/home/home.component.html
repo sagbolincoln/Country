@@ -1,0 +1,16 @@
+<div class="container my-5">
+    <h1 class="text-center mb-4">🌍 Top 10 des pays les plus peuplés</h1>
+  
+    <div class="row">
+      <div class="col-md-6 col-lg-4 mb-4" *ngFor="let country of countries">
+        <div class="card h-100 shadow-sm">
+          <img [src]="country.flags.png" class="card-img-top" [alt]="country.name.common">
+          <div class="card-body">
+            <h5 class="card-title">{{ country.name.common }}</h5>
+            <p class="card-text">Population : {{ country.population | number }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
