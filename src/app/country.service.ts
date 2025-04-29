@@ -28,7 +28,7 @@ export class CountryService {
             flag: el.flags.png,
             area: el.area,
             map: el.maps.googleMaps,
-            population: el.name.population,
+            population: el.population,
             carSide: el.car.side,
             continent: el.continents[0],
             independant: el.independent,
