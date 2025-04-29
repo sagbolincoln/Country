@@ -1,0 +1,27 @@
+<div class="container my-5">
+  <h2 class="text-center mb-5">🌍 Pays d'Afrique</h2>
+
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-8 d-flex">
+      <input [(ngModel)]="searchTerm" class="form-control me-2" placeholder="Rechercher un pays..." />
+      <button class="btn btn-primary me-2" (click)="filterCountries()">Filtrer</button>
+      <button class="btn btn-secondary" (click)="resetFilter()">Réinitialiser</button>
+    </div>
+  </div>
+
+  <div class="row">
+    @for (current of filteredCountries; track current.id) {
+      <div class="col-md-4 mb-4">
+        <div class="card-country">
+          <img [src]="current.flag" alt="Drapeau de {{current.name}}" class="country-flag" />
+          <div class="country-content">
+            <h5>{{ current.name }}</h5>
+            <p>Population : {{ current.population | number }}</p>
+            <p>Continent : {{ current.continent }}</p>
+            <button class="btn btn-outline-primary btn-sm mt-2">Voir plus</button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

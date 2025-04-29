@@ -8,9 +8,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HomeComponent, CountryComponent,NavbarComponent],
+  imports: [RouterOutlet, NavbarComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'] 
 })
 export class AppComponent implements OnInit{
   title = 'Country';

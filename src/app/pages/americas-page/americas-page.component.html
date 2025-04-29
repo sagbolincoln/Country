@@ -1,0 +1,18 @@
+<div class="container my-4">
+    <h2 class="text-center mb-4">🌎 Pays d'Amériques</h2>
+  
+    <div class="d-flex mb-4">
+      <input [(ngModel)]="searchTerm" class="form-control me-2" placeholder="Rechercher un pays..." />
+      <button class="btn btn-primary me-2" (click)="filterCountries()">Filtrer</button>
+      <button class="btn btn-secondary" (click)="resetFilter()">Réinitialiser</button>
+    </div>
+  
+    <div class="row">
+      @for (current of filteredCountries; track current.id) {
+        <div class="col-md-4 mb-3">
+          <app-country [country]="current"></app-country>
+        </div>
+      }
+    </div>
+  </div>
+  
