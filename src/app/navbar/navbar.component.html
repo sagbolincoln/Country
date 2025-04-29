@@ -1,11 +1,40 @@
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-    <a class="navbar-brand" routerLink="/">Country</a>
-    <div class="navbar-nav ms-auto">
-      <a class="nav-link" routerLink="/countries">Tous les pays</a>
-      <a class="nav-link" routerLink="/another">Autre page</a>
-      <a class="nav-link" routerLink="/feedback">Feedback</a>
-      <a class="nav-link" routerLink="/about">About</a>
-    </div>
-  </nav>
-  
+  <a class="navbar-brand" routerLink="/">🌍 Country Explorer</a>
+
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/africa" routerLinkActive="active">Afrique</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/europe" routerLinkActive="active">Europe</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/asia" routerLinkActive="active">Asie</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/americas" routerLinkActive="active">Amériques</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/oceania" routerLinkActive="active">Océanie</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/countries" routerLinkActive="active">🌐 Tous les pays</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/feedback" routerLinkActive="active">💬 Feedback</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/about" routerLinkActive="active">ℹ️ About</a>
+      </li>
+    </ul>
+  </div>
+</nav>
