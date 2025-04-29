@@ -1,11 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { HomeComponent } from './pages/home/home.component';
 import { CountryService } from './country.service';
+import { CountryComponent } from './pages/country/country.component';
 import { NavbarComponent } from './navbar/navbar.component';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent],
+  imports: [RouterOutlet, HomeComponent, CountryComponent,NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -18,30 +21,6 @@ export class AppComponent implements OnInit{
   region = "americas"
   capital = "Paris"
   
-  ngOnInit(): void {
-      this.dataservice.getCountries().subscribe(
-        data => {
-          console.log(data)
-          this.countries = data
-        }
-      )
+  ngOnInit(): void {}
       
-      this.dataservice.getOneCountry(this.id).subscribe(
-        data => {
-          this.country = data
-        }
-      )
-      
-      this.dataservice.getCountriesByRegions(this.region).subscribe(
-        data => {
-          console.log(data)
-        }
-      )
-
-      this.dataservice.getCountryByCapital(this.capital).subscribe(
-        data => {
-          console.log(data[0])
-        }
-      )
-  }
 }
