@@ -1,5 +1,6 @@
 <div class="container my-5">
-  <h2 class="text-center mb-5">🌍 Pays d'Afrique</h2>
+  <h2 class="text-center mb-4">🌍 Pays d'Afrique</h2>
+  <p class="text-center text-muted">{{ filteredCountries.length }} pays trouvés</p>
 
   <div class="row justify-content-center mb-4">
     <div class="col-md-8 d-flex">
@@ -10,17 +11,9 @@
   </div>
 
   <div class="row">
-    @for (current of filteredCountries; track current.id) {
+    @for (current of filteredCountries; track current.cca3) {
       <div class="col-md-4 mb-4">
-        <div class="card-country">
-          <img [src]="current.flag" alt="Drapeau de {{current.name}}" class="country-flag" />
-          <div class="country-content">
-            <h5>{{ current.name }}</h5>
-            <p>Population : {{ current.population | number }}</p>
-            <p>Continent : {{ current.continent }}</p>
-            <button class="btn btn-outline-primary btn-sm mt-2">Voir plus</button>
-          </div>
-        </div>
+        <app-country [country]="current"></app-country>
       </div>
     }
   </div>

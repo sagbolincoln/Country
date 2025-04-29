@@ -20,6 +20,7 @@ export class AfricaPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.countryService.getCountriesByRegions('africa').subscribe(data => {
+      console.log('Pays d’Afrique :', data); // Pour vérifier la structure
       this.countries = data;
       this.filteredCountries = data;
     });

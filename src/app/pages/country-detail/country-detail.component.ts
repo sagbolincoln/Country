@@ -28,8 +28,20 @@ export class CountryDetailComponent implements OnInit {
   }
 
   getLanguages(): string[] {
-    return this.country?.language
-      ? Object.values(this.country.language)
+    return this.country?.languages
+      ? Object.values(this.country.languages)
       : [];
+  }
+
+  getReturnPath(): string {
+    const continent = this.country?.continent?.toLowerCase();
+    switch (continent) {
+      case 'africa': return '/africa';
+      case 'europe': return '/europe';
+      case 'asia': return '/asia';
+      case 'americas': return '/americas';
+      case 'oceania': return '/oceania';
+      default: return '/countries';
+    }
   }
 }
