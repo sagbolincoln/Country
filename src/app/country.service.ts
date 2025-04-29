@@ -18,7 +18,6 @@ export class CountryService {
         const constriesArray = []
         for (let index = 0; index < data.length; index++) {
           const el = data[index]
-          // console.log( Object.keys(el.currencies))
           constriesArray.push({
             id: el.cca3,
             name: el.name.common,
@@ -44,7 +43,6 @@ export class CountryService {
   //Récupérer un pays
   getOneCountry(id: string): Observable<any> {
     return this.httpClient.get<any>('https://restcountries.com/v3.1/alpha/' + id).pipe(
-      // tap((data: any) => console.log(data)),
       map((data: any) => {
         const newCountry = {
           id: data[0].cca3,
@@ -69,7 +67,6 @@ export class CountryService {
   //Trier les pays par regions
   getCountriesByRegions(region: string): Observable<any[]> {
     return this.httpClient.get<any>('https://restcountries.com/v3.1/region/' + region).pipe(
-      tap((data: any) => console.log(data)),
       map((data: any) => {
         const countryByRegion = []
         for (let index = 0; index < data.length; index++) {

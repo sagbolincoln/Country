@@ -22,5 +22,6 @@ export const routes: Routes = [
   { path: 'country/:id', component: CountryDetailComponent },
   { path: 'about', component: AboutComponent },
   { path: 'feedback', component: FeedbackComponent },
-  { path: '**', redirectTo: 'africa' }
+
+  { path: '**', redirectTo: '' }
 ];
