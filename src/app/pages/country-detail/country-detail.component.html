@@ -1,37 +1,60 @@
 <div class="container mt-5" *ngIf="country">
   <div class="card shadow-lg p-4">
-    <div class="row">
-      <!-- Colonne gauche : drapeau + noms -->
+    <div class="row g-4">
+      <!-- Colonne gauche -->
       <div class="col-md-4 text-center">
-        <img [src]="country.flag" [alt]="country.name" class="img-fluid rounded mb-3" />
-        <h3>{{ country.name }}</h3>
-        <span class="badge bg-secondary">{{ country.frenchName }}</span>
+        <img
+          *ngIf="country?.flag"
+          [src]="country.flag"
+          [alt]="'Drapeau de ' + country.name"
+          class="img-fluid rounded mb-3 border"
+          style="max-height: 200px"
+        />
+        <h3 class="mb-1">{{ country?.name || 'Nom non disponible' }}</h3>
+        <span class="badge bg-info text-dark">
+          {{ country?.frenchName || 'Nom FR non dispo' }}
+        </span>
       </div>
 
-      <!-- Colonne droite : infos -->
+      <!-- Colonne droite -->
       <div class="col-md-8">
         <h4 class="mb-3">📝 Informations générales</h4>
-        <ul class="list-group">
-          <li class="list-group-item"><strong>Capitale :</strong> {{ country.capital }}</li>
-          <li class="list-group-item"><strong>Continent :</strong> {{ country.continent }}</li>
-          <li class="list-group-item"><strong>Superficie :</strong> {{ country.area | number }} km²</li>
-          <li class="list-group-item"><strong>Côté de conduite :</strong> {{ country.carSide }}</li>
-          <li class="list-group-item"><strong>Indépendant :</strong> {{ country.independant ? 'Oui' : 'Non' }}</li>
+        <ul class="list-group list-group-flush">
           <li class="list-group-item">
-            <strong>Langues :</strong>
-            <span *ngFor="let lang of getLanguages(); let last = last">
-              {{ lang }}<span *ngIf="!last">, </span>
-            </span>
+            <strong>Capitale :</strong> {{ country?.capital || 'Non renseignée' }}
           </li>
           <li class="list-group-item">
+            <strong>Continent :</strong> {{ country?.continent || 'Inconnu' }}
+          </li>
+          <li class="list-group-item">
+            <strong>Superficie :</strong>
+            <span *ngIf="country?.area; else noArea">{{ country.area | number }} km²</span>
+            <ng-template #noArea>Non disponible</ng-template>
+          </li>
+          <li class="list-group-item">
+            <strong>Côté de conduite :</strong> {{ country?.carSide || 'Non précisé' }}
+          </li>
+          <li class="list-group-item">
+            <strong>Indépendant :</strong> {{ country?.independant ? 'Oui' : 'Non' }}
+          </li>
+          <li class="list-group-item">
+            <strong>Langues :</strong>
+            <ng-container *ngIf="getLanguages().length > 0; else noLang">
+              <span *ngFor="let lang of getLanguages(); let last = last">
+                {{ lang }}<span *ngIf="!last">, </span>
+              </span>
+            </ng-container>
+            <ng-template #noLang>Aucune</ng-template>
+          </li>
+          <li class="list-group-item" *ngIf="country?.map">
             <strong>Carte :</strong>
-            <a [href]="country.map" target="_blank">Voir sur Google Maps</a>
+            <a [href]="country.map" target="_blank" rel="noopener">Voir sur Google Maps</a>
           </li>
         </ul>
 
         <!-- Bouton retour -->
         <div class="mt-4">
-          <a routerLink="/countries" class="btn btn-outline-primary">
+          <a [routerLink]="getReturnPath()" class="btn btn-outline-primary">
             ← Retour à la liste
           </a>
         </div>

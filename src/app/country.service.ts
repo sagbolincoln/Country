@@ -1,124 +1,120 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountryService {
-  httpClient = inject(HttpClient)
-
+  httpClient = inject(HttpClient);
 
   constructor() { }
 
-  //Récupérer tous les pays
+  // Récupérer tous les pays
   getCountries(): Observable<any[]> {
     return this.httpClient.get<any[]>('https://restcountries.com/v3.1/all').pipe(
       map((data: any) => {
-        const constriesArray = []
+        const countriesArray = [];
         for (let index = 0; index < data.length; index++) {
-          const el = data[index]
-          constriesArray.push({
+          const el = data[index];
+          countriesArray.push({
             id: el.cca3,
-            name: el.name.common,
-            capital: el.capital,
+            name: el.name?.common,
+            capital: el.capital?.[0],
             language: el.languages,
-            region: el.name.region,
-            flag: el.flags.png,
+            region: el.region,
+            flag: el.flags?.png,
             area: el.area,
-            map: el.maps.googleMaps,
+            map: el.maps?.googleMaps,
             population: el.population,
-            carSide: el.car.side,
-            continent: el.continents[0],
+            carSide: el.car?.side,
+            continent: el.continents?.[0],
             independant: el.independent,
-            frenchName: el.translations.fra.official
-          })
+            frenchName: el.translations?.fra?.official
+          });
         }
-        return constriesArray
+        return countriesArray;
       })
-    )
+    );
   }
 
-
-  //Récupérer un pays
+  // Récupérer un pays
   getOneCountry(id: string): Observable<any> {
     return this.httpClient.get<any>('https://restcountries.com/v3.1/alpha/' + id).pipe(
       map((data: any) => {
-        const newCountry = {
-          id: data[0].cca3,
-          name: data[0].name?.common,
-          capital: data[0].capital[0],
-          language: data[0].languages,
-          region: data[0].name?.region,
-          flag: data[0].flags?.png,
-          area: data[0].area,
-          map: data[0].maps?.googleMaps,
-          population: data[0].name?.population,
-          carSide: data[0].car?.side,
-          continent: data[0]?.continents[0],
-          independant: data[0].independent,
-          frenchName: data[0].translations?.fra.official
-        }
-        return newCountry
+        const el = data[0];
+        return {
+          id: el.cca3,
+          name: el.name?.common,
+          capital: el.capital?.[0],
+          language: el.languages,
+          region: el.region,
+          flag: el.flags?.png,
+          area: el.area,
+          map: el.maps?.googleMaps,
+          population: el.population,
+          carSide: el.car?.side,
+          continent: el.continents?.[0],
+          independant: el.independent,
+          frenchName: el.translations?.fra?.official
+        };
       })
-    )
+    );
   }
 
-  //Trier les pays par regions
+  // Récupérer les pays par région
   getCountriesByRegions(region: string): Observable<any[]> {
     return this.httpClient.get<any>('https://restcountries.com/v3.1/region/' + region).pipe(
       map((data: any) => {
-        const countryByRegion = []
+        const countriesByRegion = [];
         for (let index = 0; index < data.length; index++) {
-          const el = data[index]
-          countryByRegion.push({
+          const el = data[index];
+          countriesByRegion.push({
             id: el.cca3,
-            name: el.name.common,
-            capital: el.capital,
+            name: el.name?.common,
+            capital: el.capital?.[0],
             language: el.languages,
-            region: el.name.region,
-            flag: el.flags.png,
+            region: el.region,
+            flag: el.flags?.png,
             area: el.area,
-            map: el.maps.googleMaps,
-            population: el.name.population,
-            carSide: el.car.side,
-            continent: el.continents[0],
+            map: el.maps?.googleMaps,
+            population: el.population,
+            carSide: el.car?.side,
+            continent: el.continents?.[0],
             independant: el.independent,
-            frenchName: el.translations.fra.official
-          })
+            frenchName: el.translations?.fra?.official
+          });
         }
-        return countryByRegion
+        return countriesByRegion;
       })
-    )
+    );
   }
 
-  getCountryByCapital(capital: string): Observable<any> {
+  // Récupérer les pays par capitale
+  getCountryByCapital(capital: string): Observable<any[]> {
     return this.httpClient.get<any>('https://restcountries.com/v3.1/capital/' + capital).pipe(
       map((data: any) => {
-        const CountriesByCapital = []
+        const countriesByCapital = [];
         for (let index = 0; index < data.length; index++) {
-          const el = data[index]
-          CountriesByCapital.push({
+          const el = data[index];
+          countriesByCapital.push({
             id: el.cca3,
-            name: el.name.common,
-            capital: el.capital,
+            name: el.name?.common,
+            capital: el.capital?.[0],
             language: el.languages,
-            region: el.name.region,
-            flag: el.flags.png,
+            region: el.region,
+            flag: el.flags?.png,
             area: el.area,
-            map: el.maps.googleMaps,
-            population: el.name.population,
-            carSide: el.car.side,
-            continent: el.continents[0],
+            map: el.maps?.googleMaps,
+            population: el.population,
+            carSide: el.car?.side,
+            continent: el.continents?.[0],
             independant: el.independent,
-            frenchName: el.translations.fra.official
-          })
+            frenchName: el.translations?.fra?.official
+          });
         }
-        return CountriesByCapital
-      }
-      )
-    )
+        return countriesByCapital;
+      })
+    );
   }
-
-
 }
