@@ -21,6 +21,13 @@ export class AppComponent implements OnInit{
   region = "americas"
   capital = "Paris"
   
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    this.dataservice.getEuropeContries().subscribe((data: any) => {
+      this.countries = data
+      console.log(this.countries)
+    }
+    )
+  }
       
 }

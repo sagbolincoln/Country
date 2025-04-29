@@ -17,12 +17,6 @@ export class HomeComponent {
   countryservice = inject(CountryService)
 
   ngOnInit(): void {
-    this.countryservice.getCountries().subscribe(
-      data => {
-        this.countries = data
-        console.log(this.countries)
-      }
-    )
   }
 
 

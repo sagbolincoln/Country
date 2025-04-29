@@ -120,5 +120,143 @@ export class CountryService {
     )
   }
 
+  getEuropeContries(): Observable<any[]> {
+    return this.httpClient.get<any>('https://restcountries.com/v3.1/region/europe').pipe(
+      map((data: any) => {
+        const europeCountries = []
+        for (let index = 0; index < data.length; index++) {
+          const el = data[index]
+          europeCountries.push({
+            id: el.cca3,
+            name: el.name.common,
+            capital: el.capital,
+            language: el.languages,
+            region: el.name.region,
+            flag: el.flags.png,
+            area: el.area,
+            map: el.maps.googleMaps,
+            population: el.name.population,
+            carSide: el.car.side,
+            continent: el.continents[0],
+            independant: el.independent,
+            frenchName: el.translations.fra.official
+          })
+        }
+        return europeCountries
+      }
+      )
+    )
+  }
 
+  getAmericasContries(): Observable<any[]> {
+    return this.httpClient.get<any>('https://restcountries.com/v3.1/region/americas').pipe(
+      map((data: any) => {
+        const americasCountries = []
+        for (let index = 0; index < data.length; index++) {
+          const el = data[index]
+          americasCountries.push({
+            id: el.cca3,
+            name: el.name.common,
+            capital: el.capital,
+            language: el.languages,
+            region: el.name.region,
+            flag: el.flags.png,
+            area: el.area,
+            map: el.maps.googleMaps,
+            population: el.name.population,
+            carSide: el.car.side,
+            continent: el.continents[0],
+            independant: el.independent,
+            frenchName: el.translations.fra.official
+          })
+        }
+        return americasCountries
+      }
+      )
+    )
+  }
+
+  getAsiaContries(): Observable<any[]> {
+    return this.httpClient.get<any>('https://restcountries.com/v3.1/region/asia').pipe(
+      map((data: any) => {
+        const asiaCountries = []
+        for (let index = 0; index < data.length; index++) {
+          const el = data[index]
+          asiaCountries.push({
+            id: el.cca3,
+            name: el.name.common,
+            capital: el.capital,
+            language: el.languages,
+            region: el.name.region,
+            flag: el.flags.png,
+            area: el.area,
+            map: el.maps.googleMaps,
+            population: el.name.population,
+            carSide: el.car.side,
+            continent: el.continents[0],
+            independant: el.independent,
+            frenchName: el.translations.fra.official
+          })
+        }
+        return asiaCountries
+      }
+      )
+    )
+  }
+
+  getAfricaContries(): Observable<any[]> {
+    return this.httpClient.get<any>('https://restcountries.com/v3.1/region/africa').pipe(
+      map((data: any) => {
+        const africaCountries = []
+        for (let index = 0; index < data.length; index++) {
+          const el = data[index]
+          africaCountries.push({
+            id: el.cca3,
+            name: el.name.common,
+            capital: el.capital,
+            language: el.languages,
+            region: el.name.region,
+            flag: el.flags.png,
+            area: el.area,
+            map: el.maps.googleMaps,
+            population: el.name.population,
+            carSide: el.car.side,
+            continent: el.continents[0],
+            independant: el.independent,
+            frenchName: el.translations.fra.official
+          })
+        }
+        return africaCountries
+      }
+      )
+    )
+  }
+
+  getOceaniaContries(): Observable<any[]> {
+    return this.httpClient.get<any>('https://restcountries.com/v3.1/region/oceania').pipe(
+      map((data: any) => {
+        const oceaniaCountries = []
+        for (let index = 0; index < data.length; index++) {
+          const el = data[index]
+          oceaniaCountries.push({
+            id: el.cca3,
+            name: el.name.common,
+            capital: el.capital,
+            language: el.languages,
+            region: el.name.region,
+            flag: el.flags.png,
+            area: el.area,
+            map: el.maps.googleMaps,
+            population: el.name.population,
+            carSide: el.car.side,
+            continent: el.continents[0],
+            independant: el.independent,
+            frenchName: el.translations.fra.official
+          })
+        }
+        return oceaniaCountries
+      }
+      )
+    )
+  }
 }
